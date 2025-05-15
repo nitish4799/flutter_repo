@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_repo/dice_roller.dart';
-
 class GradientContainer extends StatelessWidget {
   const GradientContainer({
     super.key,
@@ -8,9 +6,11 @@ class GradientContainer extends StatelessWidget {
       Color.fromARGB(255, 96, 57, 165),
       Color.fromARGB(255, 73, 30, 142),
     ],
+    required this.columnWidgets,
   });
 
   final List<Color> gradientColor;
+  final List<Widget> columnWidgets;
 
   @override
   Widget build(context) {
@@ -22,8 +22,12 @@ class GradientContainer extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      // child: const Center(child: DitchText(text: 'Ditch Navigation')),
-      child: Center(child: DiceRoller()),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: columnWidgets,
+        ),
+      ),
     );
   }
 }
