@@ -1,14 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_repo/quiz.dart';
+// import 'package:flutter/services.dart';
+import 'package:flutter_repo/expensesscreens/expenses.dart';
+// import 'package:flutter_repo/quiz.dart';
 // import 'package:flutter_repo/quizscreens/start_screen.dart';
 // import 'gradient_container.dart';
 
+var kColorScheme = ColorScheme.fromSeed(seedColor: Colors.black12);
+var kDarkColorScheme = ColorScheme.fromSeed(
+  seedColor: Colors.indigo,
+  brightness: Brightness.dark,
+);
+
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
+  //   fn,
+  // ) {
+    runApp(
+      MaterialApp(
+        darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+          colorScheme: kDarkColorScheme,
+          cardTheme: CardTheme().copyWith(
+            color: kDarkColorScheme.secondaryContainer,
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          ),
+        ),
+        theme: ThemeData.from(
+          colorScheme: kColorScheme,
+          useMaterial3: true,
+        ).copyWith(
+          appBarTheme: const AppBarTheme().copyWith(
+            backgroundColor: kColorScheme.onPrimaryContainer,
+            foregroundColor: kColorScheme.primaryContainer,
+          ),
+          cardTheme: CardTheme().copyWith(
+            color: kColorScheme.secondaryContainer,
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kColorScheme.primaryContainer,
+            ),
+          ),
+          textTheme: ThemeData().textTheme.copyWith(
+            titleLarge: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 14,
+              color: kColorScheme.onSecondaryContainer,
+            ),
+          ),
+        ),
+        themeMode: ThemeMode.system,
+        home: const Expenses(),
+      ),
+    );
+  // });
   // runApp(MaterialApp(home: Scaffold(body: GradientContainer())));
-  runApp(Quiz());
+  // runApp(Quiz());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

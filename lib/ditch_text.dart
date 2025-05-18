@@ -7,6 +7,10 @@ class DitchText extends StatelessWidget {
   final Color color;
   final TextAlign? align;
   final FontWeight? fontWeight;
+  final IconData? icon;
+  final double iconSize;
+  final Color? iconColor;
+  final bool iconAtStart;
 
   const DitchText({
     super.key,
@@ -16,11 +20,19 @@ class DitchText extends StatelessWidget {
     this.fontFamily,
     this.align,
     this.fontWeight,
+    this.icon,
+    this.iconSize = 20,
+    this.iconColor,
+    this.iconAtStart = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    final iconWidget = icon != null
+        ? Icon(icon, size: iconSize, color: iconColor ?? color)
+        : null;
+
+    final textWidget = Text(
       text,
       textAlign: align ?? TextAlign.center,
       style: TextStyle(
@@ -30,5 +42,15 @@ class DitchText extends StatelessWidget {
         fontWeight: fontWeight,
       ),
     );
+
+    return icon == null
+        ? textWidget
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: iconAtStart
+                ? [iconWidget!, const SizedBox(width: 6), textWidget]
+                : [textWidget, const SizedBox(width: 6), iconWidget!],
+          );
   }
 }

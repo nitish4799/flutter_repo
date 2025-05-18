@@ -5,12 +5,14 @@ class DitchElevatedButton extends StatelessWidget {
   final void Function() onClickHandler;
   final String label;
   final double? fontSize;
+  final double? buttonWidth;
 
   const DitchElevatedButton({
     super.key,
     required this.onClickHandler,
     required this.label,
     this.fontSize,
+    this.buttonWidth,
   });
 
   @override
@@ -18,7 +20,7 @@ class DitchElevatedButton extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      width: screenWidth * 0.85, // 70% of screen width
+      width: buttonWidth ?? screenWidth * 0.85,
       child: ElevatedButton(
         onPressed: onClickHandler,
         style: ElevatedButton.styleFrom(
