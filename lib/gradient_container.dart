@@ -9,33 +9,34 @@ class GradientContainer extends StatelessWidget {
     ],
     this.columnWidgets,
     this.rowWidgets,
+    this.borderRadius = BorderRadius.zero,
+    this.padding
   });
 
   final List<Color> gradientColor;
   final List<Widget>? columnWidgets;
   final List<Widget>? rowWidgets;
+  final BorderRadiusGeometry? borderRadius;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
 
     Widget child;
     if (isPortrait && columnWidgets != null) {
-      child = Column(
-        mainAxisSize: MainAxisSize.min,
-        children: columnWidgets!,
-      );
+      child = Column(mainAxisSize: MainAxisSize.min, children: columnWidgets!);
     } else if (!isPortrait && rowWidgets != null) {
-      child = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: rowWidgets!,
-      );
+      child = Row(mainAxisSize: MainAxisSize.min, children: rowWidgets!);
     } else {
       child = const SizedBox();
     }
 
     return Container(
+      padding: padding ?? EdgeInsets.all(0),
       decoration: BoxDecoration(
+        borderRadius: borderRadius,
         gradient: LinearGradient(
           colors: gradientColor,
           begin: Alignment.topLeft,
