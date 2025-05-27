@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_repo/placesScreens/places_list_screen.dart';
 // import 'package:flutter_repo/mealsScreens/category_screen.dart';
 // import 'package:flutter_repo/mealsScreens/tabs.dart';
-import 'package:flutter_repo/shoppingScreens/shopping_home.dart';
+// import 'package:flutter_repo/shoppingScreens/shopping_home.dart';
 // import 'package:flutter/services.dart';
 // import 'package:flutter_repo/expensesscreens/expenses.dart';
 // import 'package:flutter_repo/quiz.dart';
@@ -82,6 +83,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return MaterialApp(theme: theme, home: Tabs());
-    return MaterialApp(theme: theme, home: ShoppingHome());
+    return MaterialApp(theme: theme, home: PlacesListScreen());
   }
 }
